@@ -1,8 +1,8 @@
-import NavbarHome from "@/src/components/NavbarHome";
-import Carousel from "@/src/components/Carousel";
-import Card from "@/src/components/Card";
-import Banner from "@/src/components/Banner";
-import Footer from "@/src/components/Footer";
+import NavbarHome from "@/components/NavbarHome";
+import Carousel from "@/components/Carousel";
+import Card from "@/components/Card";
+import Banner from "@/components/Banner";
+import Footer from "@/components/Footer";
 import Link from "next/link";
 import { Metadata } from "next";
 
