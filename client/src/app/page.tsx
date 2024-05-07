@@ -41,7 +41,7 @@ export default async function Home() {
   const data = result.data;
 
   return (
-    <div className="bg-white">
+    <div className="bg-red-100">
       {/* NavBar */}
       <NavbarHome />
 

@@ -35,5 +35,5 @@ export default function Card({product}: {product: featured}) {
             </div>
           </div>
         </>
-      );
+    );
 }
