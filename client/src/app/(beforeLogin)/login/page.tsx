@@ -32,6 +32,7 @@ function login() {
         cookies().set("Authorization", `Bearer ${responseJson.accessToken}`);
         redirect("/products");
     }
+    
     return (
         <>
           <div className="flex h-screen items-center justify-center">
