@@ -7,5 +7,5 @@ export default function LogoutButton() {
         <button onClick={() => logout()} className="btn btn-error text-white">
           Logout
         </button>
-      );
+    );
 }

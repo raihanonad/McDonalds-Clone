@@ -35,5 +35,5 @@ export default function CardProduct({ product }: { product: CardProps }) {
             </div>
           </div>
         </>
-      );
+    );
 }
