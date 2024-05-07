@@ -1,8 +1,8 @@
-import NavbarHome from "@/components/NavbarHome";
-import Carousel from "@/components/Carousel";
-import Card from "@/components/Card";
-import Banner from "@/components/Banner";
-import Footer from "@/components/Footer";
+import NavbarHome from "@/src/components/NavbarHome";
+import Carousel from "@/src/components/Carousel";
+import Card from "@/src/components/Card";
+import Banner from "@/src/components/Banner";
+import Footer from "@/src/components/Footer";
 import Link from "next/link";
 import { Metadata } from "next";
 
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 interface featured {
   name: string;
   slug: string;
-  desctiption: string;
+  description: string;
   excerpts: string;
   price: number;
   tags: [string];
@@ -32,6 +32,7 @@ const fetchData = async () => {
   const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/featuredProducts`,
     {method: "get"}
   );
+
   return await data.json();
 }
 
