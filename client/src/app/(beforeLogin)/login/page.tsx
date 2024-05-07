@@ -1,4 +1,37 @@
+"use-client";
+import Link from "next/link";
+import { cookies } from "next/headers";
+
+import { Metadata } from "next";
+import { redirect } from "next/navigation";
+
+export const metadata: Metadata = {
+  title: "Login | McDonald's",
+  description: "**"
+};
+
 function login() {
+    async function loginAction(formData: FormData) {
+        "use server";
+        const rawFormData = {
+            email: formData.get("email"),
+            password: formData.get("password")
+        };
+
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/login`, {
+            method: "POST",
+            cache: "no-store",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(rawFormData)
+        })
+
+        const responseJson = await response.json();
+
+        cookies().set("Authorization", `Bearer ${responseJson.accessToken}`);
+        redirect("/products");
+    }
     return (
         <>
           <div className="flex h-screen items-center justify-center">
@@ -61,3 +94,5 @@ function login() {
         </>
     );
 }
+
+export default login;

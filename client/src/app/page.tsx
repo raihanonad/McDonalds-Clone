@@ -4,8 +4,9 @@ import Card from "@/components/Card";
 import Banner from "@/components/Banner";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import { Metadata } from "next";
 
-export const metadata {
+export const metadata: Metadata = {
   title: "Home | McDonald's",
   description: "**"
 }
