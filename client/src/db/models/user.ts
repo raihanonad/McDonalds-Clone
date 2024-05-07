@@ -1,6 +1,9 @@
 import { User } from '@/types';
 import { db } from '../config/mongo';
-import z from 'zod';
+import { z } from 'zod';
+import bcryptjs from 'bcryptjs';
+import { ObjectId } from 'mongodb';
+import { NextResponse } from 'next/server';
 
 interface Login {
     email: string;
@@ -26,6 +29,56 @@ export default class UserModel {
     }
 
     static async getUserByEmail(email: string) {
-        return (await this.userCollection().findOne({ email }))
+        return (await this.userCollection().findOne({ email })) as User | null;
+    }
+
+    static async create(newUser: newUser) {
+        const validation = UserValidation.safeParse(newUser);
+
+        if (!validation.success) {
+          const errors = validation.error;
+          throw errors;
+        }
+
+        const user = {
+            ...newUser,
+            password: bcryptjs.hashSync(newUser.password),
+        }
+
+        const [validateUser] = await this.userCollection()
+            .find({
+                $or: [
+                    {username: user.username},
+                    {email: user.email}
+                ]
+            }).toArray();
+
+        if (validateUser) throw new Error('Username/Email already registered');
+
+        const data = await this.userCollection().insertOne(user);
+        return data;
+    }
+
+    static async getUserById(id: string) {
+        const _id = new ObjectId(id);
+
+        const data = (await this.userCollection().findOne({_id})) as User | null;
+
+        if (!data) {
+            return NextResponse.json(
+                {
+                    message: "User not found"
+                },
+                {
+                  status: 404
+                }
+            )
+        }
+
+        return data;
+    }
+
+    static async findAll() {
+        return (await this.userCollection().find({}).toArray()) as User[];
     }
 }
