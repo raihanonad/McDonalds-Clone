@@ -1,12 +1,47 @@
+import NavbarHome from "@/components/NavbarHome";
+import Carousel from "@/components/Carousel";
+import Card from "@/components/Card";
+import Banner from "@/components/Banner";
+import Footer from "@/components/Footer";
+import Link from "next/link";
 
+export const metadata {
+  title: "Home | McDonald's",
+  description: "**"
+}
+
+interface featured {
+  name: string;
+  slug: string;
+  desctiption: string;
+  excerpts: string;
+  price: number;
+  tags: [string];
+  thumbnail: string;
+  images: [string];
+  createdAt: string;
+  upadatedAt: string;
+}
+
+interface ArrayOfFeatured {
+  data: featured[];
+}
+
+const fetchData = async () => {
+  const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/featuredProducts`,
+    {method: "get"}
+  );
+  return await data.json();
+}
 
 export default async function Home() {
   let result = await fetchData();
+  const data = result.data;
 
   return (
     <div className="bg-white">
       {/* NavBar */}
-      <NavBarHome />
+      <NavbarHome />
 
       {/* Carousel */}
       <Carousel />
