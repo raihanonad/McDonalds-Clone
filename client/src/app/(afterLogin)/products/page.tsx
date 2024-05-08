@@ -12,6 +12,20 @@ interface ArrayOfProducts {
 
 export default function Products() {
     const [products, setProducts] = useState<Product[]>([]);
+    const [search, setSearch] = useState<string>("");
+    const [searchProduct, setSearchProduct] = useState<Product[]>([]);
+    let query = search.replaceAll(" ", "%20");
+
+    async function searchData(query: string) {
+        let response = await fetch(
+            `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/search?search=${query}`,
+            {
+                method: "get",
+                cache: "no-store"
+            }
+        );
+        
+    }
 
     return (
         <div className="bg-white">

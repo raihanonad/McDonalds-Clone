@@ -13,4 +13,4 @@ export const createToken = (payload: JwtPayload) =>
     const payloadJose = await jose.jwtVerify<T>(token, secretKey);
   
     return payloadJose.payload;
-  };
+};
