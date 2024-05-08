@@ -28,4 +28,12 @@ export default class ProductModel {
 
         return featured;
     }
+
+    static async getProductBySlug(slug: string) {
+        const data = await this.productCollection().findOne({
+            slug: slug
+        });
+
+        return data;
+    }
 }
