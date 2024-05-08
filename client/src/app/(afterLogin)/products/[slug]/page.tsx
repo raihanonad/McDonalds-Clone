@@ -1,7 +1,7 @@
 import { Product } from "@/types";
 import { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
-import Addwishlist from "@/components/AddWishlist";
+import AddWishlist from "@/components/AddWishlist"
 
 type Props = {
     params: {
@@ -58,7 +58,7 @@ export default async function DetailProduct({
                 </p>
                 <p className="mb-10">{product?.data.description}</p>
                 <div className="mb-6">
-                  <Addwishlist productId={product?.data._id} />
+                  <AddWishlist productId={product?.data._id} />
                 </div>
                 <Link
                   href="/products"
