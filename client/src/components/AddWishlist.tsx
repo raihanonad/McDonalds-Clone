@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import Swal from "sweetalert2";
 
 interface AddWishlistProps {
