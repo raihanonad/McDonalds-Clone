@@ -4,7 +4,10 @@ import CardProduct from "@/components/CardProduct";
 import Footer from "@/components/Footer";
 import { Product } from "@/types";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { FaSearch } from "react-icons/fa";
+import bannerProduct from "../../assets/bannerProduct.jpg";
+import bannerProduct2 from "../../assets/bannerProduct2.jpg";
 
 interface ArrayOfProducts {
   data: Product[];
@@ -24,8 +27,35 @@ export default function Products() {
                 cache: "no-store"
             }
         );
-        
+        setSearchProduct(((await response.json())as ArrayOfProducts).data);  
     }
+
+    useEffect(() => {
+        async function fetchData() {
+            let response = await fetch(
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/products`,
+                {
+                    cache: "no-store"
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error("error");
+            }
+
+            const responseJson = await response.json();
+            setProducts(responseJson.data);
+        }
+        fetchData();
+    }, []);
+
+    useEffect(() => {
+        if (search) {
+            searchData(search)
+        } else {
+            setSearchProduct(products)
+        }
+    }, [search, products]);
 
     return (
         <div className="bg-white">
