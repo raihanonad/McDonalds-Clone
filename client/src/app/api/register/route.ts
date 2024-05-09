@@ -2,7 +2,7 @@ import UserModel from "@/db/models/user";
 import { NextResponse } from "next/server";
 import { ZodError } from "zod";
 
-export async function POST(request: Request) {
+export const POST = async (request: Request) =>{
     try {
         const body = await request.json();
         const data = await UserModel.create(body);

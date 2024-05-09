@@ -1,7 +1,7 @@
 import { Product } from "@/types";
 import { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
-import AddWishlist from "@/components/AddWishlist"
+import AddWishlist from "@/components/AddWishlist";
 
 type Props = {
     params: {
