@@ -1,45 +1,14 @@
-import { db } from "@/db/config/mongo";
-import { NextRequest, NextResponse } from "next/server";
+import ProductModel from "@/db/models/product";
 
-export async function GET(request: NextRequest) {
-    try {
-        const search = request.nextUrl.searchParams;
+export async function GET(request: Request) {
+    const products = await ProductModel.getAllProducts();
 
-        const query = search.get("search");
-
-        const data = await db
-            .collection("products")
-            .find({
-                name: { $regex: query, $options: "i" },
-            }).toArray();
-
-        if (!data) {
-            return NextResponse.json(
-                {
-                    message: "Data not found"
-                },
-                {
-                    status: 404
-                }
-            );
+    return Response.json(
+        {
+            data: products
+        },
+        {
+            status: 200
         }
-
-        return NextResponse.json(
-            {
-                data: data
-            },
-            {
-                status: 200
-            }
-        );
-    } catch (error) {
-        return NextResponse.json(
-            {
-                message: "Internal server error"
-            },
-            {
-                status: 500
-            }
-        )
-    }
+    )
 }
