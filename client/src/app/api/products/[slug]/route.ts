@@ -4,10 +4,10 @@ export async function GET(request: Request,
     { params }: { params: { slug: string } }
     ) {
     
-    const product = await ProductModel.getProductBySlug(params.slug);
+    const products = await ProductModel.getProductBySlug(params.slug);
 
     return Response.json({
-        data: product
+        data: products
     }, {status: 200});
 }
     

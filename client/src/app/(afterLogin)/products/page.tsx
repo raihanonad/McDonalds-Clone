@@ -1,15 +1,14 @@
 "use client";
-
 import CardProduct from "@/components/CardProduct";
 import Footer from "@/components/Footer";
 import { Product } from "@/types";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import bannerProduct from "../../assets/bannerProduct.jpg";
-import bannerProduct2 from "../../assets/bannerProduct2.jpg";
+import bannerProduct1 from "../../../../assets/bannerProduct1.jpg";
+import bannerProduct2 from "../../../../assets/bannerProduct2.jpg";
 
-interface ArrayOfProducts {
+interface ArrayOfProduct {
   data: Product[];
 }
 
@@ -27,12 +26,12 @@ export default function Products() {
                 cache: "no-store"
             }
         );
-        setSearchProduct(((await response.json())as ArrayOfProducts).data);  
+        setSearchProduct(((await response.json()) as ArrayOfProduct).data);  
     }
 
     useEffect(() => {
         async function fetchData() {
-            let response = await fetch(
+            const response = await fetch(
                 `${process.env.NEXT_PUBLIC_BASE_URL}/api/products`,
                 {
                     cache: "no-store"
@@ -61,7 +60,7 @@ export default function Products() {
         <div className="bg-white">
           {/* banner product */}
           <div className="w-full">
-            <Image alt="bannerProduct" src={bannerProduct} className="w-full" />
+            <Image alt="bannerProduct" src={bannerProduct1} className="w-full" />
           </div>
     
           {/* body product */}

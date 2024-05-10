@@ -1,5 +1,5 @@
 import { Product } from "@/types";
-import { Metadata, ResolvingMetadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 import AddWishlist from "@/components/AddWishlist";
 
@@ -15,18 +15,18 @@ export async function generateMetadata(
 ): Promise<Metadata> {
     const slug = params.slug;
     const product = await fetchData(slug);
-    const previousImage = (await parent).openGraph?.images || [];
+    const previousImages = (await parent).openGraph?.images || [];
 
     return {
         title: product.data.name,
         openGraph: {
-            images: ["/some-specific-page-image.jpg", ...previousImage]
+            images: ["/some-specific-page-image.jpg", ...previousImages]
         }
     }
 }
 
 async function fetchData(slug: string) {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${slug}`);
+    const response = await fetch(`http://localhost:3000/api/products/${slug}`);
     const data = await response.json();
 
     return data;
