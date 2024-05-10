@@ -64,7 +64,7 @@ export async function GET(request: Request) {
             headers: {
                 "Content-Type": "application/json",
             }
-        })
+        });
     } catch (error) {
         return NextResponse.json(
             {
@@ -77,3 +77,41 @@ export async function GET(request: Request) {
     }
 }
 
+export const DELETE = async (request: Request) => {
+    try {
+        const userId = request.headers.get("x-user-id");
+
+        if (!userId) {
+            return NextResponse.json(
+                {
+                    message: "User ID not found"
+                },
+                {
+                    status: 404
+                }
+            );
+        }
+
+        const body = await request.json();
+        const { _id } = body;
+        const deleteWishlist = await WishlistModel.deleteWishlist(_id);
+
+        return NextResponse.json(
+            {
+                message: "Wishlist item deleted",
+            },
+            {
+                status: 200
+            }
+        );
+    } catch (error) {
+        return NextResponse.json(
+            {
+                message: "Internal server error"
+            },
+            {
+                status: 500
+            }
+        )
+    }
+}
