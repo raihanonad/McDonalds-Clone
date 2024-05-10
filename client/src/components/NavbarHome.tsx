@@ -15,7 +15,7 @@ export default function NavbarHome() {
             <ul className="menu menu-horizontal px-1">
               <li>
                 <Link href="/products">
-                  Menus
+                  Menu
                 </Link>
               </li>
               <li>
@@ -24,7 +24,7 @@ export default function NavbarHome() {
             </ul>
           </div>
           <div className="navbar-end">
-            <button className="btn btn-outline mr-6">
+            <button className="btn btn-outline mr-6 bg-red-600 text-gray-100">
               <Link href={"/login"}>Login</Link>
             </button>
           </div>

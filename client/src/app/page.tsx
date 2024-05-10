@@ -4,9 +4,8 @@ import Card from "@/components/Card";
 import Banner from "@/components/Banner";
 import Footer from "@/components/Footer";
 import Link from "next/link";
-import { Metadata } from "next";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Home | McDonald's",
   description: "**"
 }
@@ -41,7 +40,7 @@ export default async function Home() {
   const data = result.data;
 
   return (
-    <div className="bg-red-100">
+    <div className="bg-rose-100">
       {/* NavBar */}
       <NavbarHome />
 

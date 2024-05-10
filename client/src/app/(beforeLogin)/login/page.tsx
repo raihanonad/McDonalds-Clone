@@ -1,11 +1,9 @@
 "use-client";
 import Link from "next/link";
 import { cookies } from "next/headers";
-
-import { Metadata } from "next";
 import { redirect } from "next/navigation";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Login | McDonald's",
   description: "**"
 };
