@@ -35,7 +35,7 @@ function login() {
         <>
           <div className="flex h-screen items-center justify-center">
             <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-3xl shadow-md">
-              <h2 className="text-3xl font-bold text-center text-yellow-500 mb-12">Login McDonald's</h2>
+              <h2 className="text-3xl font-bold text-center text-yellow-500 mb-12">Login McDonald&apos;s</h2>
               <form action={loginAction} className="space-y-8">
                 <div className="relative">
                   <label

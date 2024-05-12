@@ -26,7 +26,7 @@ export async function generateMetadata(
 }
 
 async function fetchData(slug: string) {
-    const response = await fetch(`http://localhost:3000/api/products/${slug}`);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${slug}`);
     const data = await response.json();
 
     return data;

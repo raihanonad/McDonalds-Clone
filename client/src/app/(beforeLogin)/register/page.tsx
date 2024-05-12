@@ -33,7 +33,7 @@ export default function Register() {
         <div className="pt-44 mb-10">
           <div className="max-w-lg mx-auto p-8 bg-white shadow-lg rounded-3xl">
             <h2 className="text-3xl font-bold text-center mb-6 text-yellow-500">
-              Register McDonald's
+              Register McDonald&apos;s
             </h2>
             <form action={registerAction} className="space-y-4">
               <div>
